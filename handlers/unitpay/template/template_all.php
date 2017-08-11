@@ -13,5 +13,5 @@ Loc::loadMessages(__FILE__);
 	<?if(strlen($params["signature"])>0):?>
 		<input type="hidden" name="signature" value="<?=$params["signature"]?>">
 	<?endif?>
-    <input type="submit" value="<?=GetMessage("CZ_UNITPAY_BTN_PAY")?>">
+    <input type="submit" value="<?=GetMessage("UNITPAY_BTN_PAY")?>">
 </form>

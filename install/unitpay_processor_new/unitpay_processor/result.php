@@ -1,6 +1,6 @@
 <?
-if(file_exists($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/czebra.unitpay/handlers/result.php')) 
+if(file_exists($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/unitpay.paymodule/handlers/result.php')) 
 {
-	include($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/czebra.unitpay/handlers/result.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/unitpay.paymodule/handlers/result.php');
 }
 ?>

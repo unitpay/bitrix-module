@@ -36,10 +36,10 @@
 			$arOrder = CSaleOrder::GetByID($id);
 			$sum = $arOrder["PRICE"];
 
-			$currency = COption::GetOptionString('czebra.unitpay', 'curr_'.$arOrder["LID"], '');
+			$currency = COption::GetOptionString('unitpay.paymodule', 'curr_'.$arOrder["LID"], '');
 			if(strlen($currency)==0)
 				$currency = "RUB";
-			$projectId = COption::GetOptionString('czebra.unitpay', 'numb_'.$arOrder["LID"], '');
+			$projectId = COption::GetOptionString('unitpay.paymodule', 'numb_'.$arOrder["LID"], '');
 
 			if ((double)$params['orderSum'] != (double)$sum ||
 				$params['orderCurrency'] != $currency ||

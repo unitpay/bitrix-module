@@ -1,13 +1,13 @@
 <?
-$module_id = "czebra.unitpay";
+$module_id = "unitpay.paymodule";
 
-if (!$USER->CanDoOperation('czebra.unitpay_settings'))
+if (!$USER->CanDoOperation('unitpay.paymodule_settings'))
 {
 	$APPLICATION->AuthForm(GetMessage("ACCESS_DENIED"));
 }
 
 CModule::IncludeModule("iblock");
-CModule::IncludeModule('czebra.unitpay');
+CModule::IncludeModule('unitpay.paymodule');
 
 IncludeModuleLangFile($_SERVER["DOCUMENT_ROOT"].BX_ROOT."/modules/main/options.php");
 IncludeModuleLangFile(__FILE__);
@@ -26,18 +26,18 @@ IncludeModuleLangFile(__FILE__);
 	$siteCount = count($siteList);
 
 $arAllOptions = Array(
-	Array("numb_", GetMessage('CZ_numb'), array("text"), "",GetMessage('CZ_D_numb')),	
-	Array("pkey_", GetMessage('CZ_pkey'), array("text"), "",GetMessage('CZ_D_pkey')),	
-	Array("skey_", GetMessage('CZ_skey'), array("text"), "",GetMessage('CZ_D_skey')),	
-	Array("desc_", GetMessage('CZ_desc'), array("text"), "",GetMessage('CZ_D_desc')),
-	Array("purseType_", GetMessage('CZ_purseType'), array("text"), "",GetMessage('CZ_D_purseType')),	
+	Array("numb_", GetMessage('UNITPAY_numb'), array("text"), "",GetMessage('UNITPAY_D_numb')),	
+	Array("pkey_", GetMessage('UNITPAY_pkey'), array("text"), "",GetMessage('UNITPAY_D_pkey')),	
+	Array("skey_", GetMessage('UNITPAY_skey'), array("text"), "",GetMessage('UNITPAY_D_skey')),	
+	Array("desc_", GetMessage('UNITPAY_desc'), array("text"), "",GetMessage('UNITPAY_D_desc')),
+	Array("purseType_", GetMessage('UNITPAY_purseType'), array("text"), "",GetMessage('UNITPAY_D_purseType')),	
 	
-	//Array("curr_", GetMessage('CZ_curr'), array("text"), ""),	
-	//Array("lang_", GetMessage('CZ_lang'), array("text"), ""),	
+	//Array("curr_", GetMessage('UNITPAY_curr'), array("text"), ""),	
+	//Array("lang_", GetMessage('UNITPAY_lang'), array("text"), ""),	
 );
 
 $aTabs = array(
-	array("DIV" => "edit1", "TAB" => GetMessage('CZ_PROP'), "ICON" => "unitpay_settings", "TITLE" => GetMessage('CZ_PROP_TITLE')),
+	array("DIV" => "edit1", "TAB" => GetMessage('UNITPAY_PROP'), "ICON" => "unitpay_settings", "TITLE" => GetMessage('UNITPAY_PROP_TITLE')),
 	array("DIV" => "edit2", "TAB" => GetMessage("MAIN_TAB_RIGHTS"), "ICON" => "unitpay_settings", "TITLE" => GetMessage("MAIN_TAB_TITLE_RIGHTS")),
 );
 
@@ -48,7 +48,7 @@ if($REQUEST_METHOD=="POST" && strlen($Update.$Apply.$RestoreDefaults)>0 && check
 {
 	if (strlen($RestoreDefaults) > 0)
 	{
-		COption::RemoveOption('czebra.unitpay');
+		COption::RemoveOption('unitpay.paymodule');
 		$z = CGroup::GetList($v1="id",$v2="asc", array("ACTIVE" => "Y", "ADMIN" => "N"));
 		while($zr = $z->Fetch())
 			$APPLICATION->DelGroupRight($module_id, array($zr["ID"]));
@@ -56,23 +56,23 @@ if($REQUEST_METHOD=="POST" && strlen($Update.$Apply.$RestoreDefaults)>0 && check
 	else{
 		foreach($siteList as $site)
 		{
-			COption::SetOptionString('czebra.unitpay', 'numb_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'numb_'.$site['ID'], 
 												$_POST['numb_'.$site['ID']]);	
-			COption::SetOptionString('czebra.unitpay', 'pkey_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'pkey_'.$site['ID'], 
 												$_POST['pkey_'.$site['ID']]);	
-			COption::SetOptionString('czebra.unitpay', 'skey_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'skey_'.$site['ID'], 
 												$_POST['skey_'.$site['ID']]);	
-			COption::SetOptionString('czebra.unitpay', 'desc_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'desc_'.$site['ID'], 
 												$_POST['desc_'.$site['ID']]);	
-			COption::SetOptionString('czebra.unitpay', 'curr_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'curr_'.$site['ID'], 
 												$_POST['curr_'.$site['ID']]);	
-			COption::SetOptionString('czebra.unitpay', 'lang_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'lang_'.$site['ID'], 
 												$_POST['lang_'.$site['ID']]);	
 			
-			COption::SetOptionString('czebra.unitpay', 'purseType_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'purseType_'.$site['ID'], 
 												$_POST['purseType_'.$site['ID']]);
 			
-			COption::SetOptionString('czebra.unitpay', 'typepay_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'typepay_'.$site['ID'], 
 												$_POST['typepay_'.$site['ID']]);	
 		}
 	}
@@ -104,7 +104,7 @@ foreach($siteList as $site)
 					<table style="width: 100%;">
 <?
 foreach($arAllOptions as $arOption):
-	$val = COption::GetOptionString("czebra.unitpay", $arOption[0].$site['ID'], $arOption[3]);
+	$val = COption::GetOptionString("unitpay.paymodule", $arOption[0].$site['ID'], $arOption[3]);
 	$type = $arOption[2];
 
 ?>
@@ -130,9 +130,9 @@ foreach($arAllOptions as $arOption):
 </tr>
 <?endforeach;?>
 <tr>
-	<td><?=GetMessage('CZ_curr')?></td>
+	<td><?=GetMessage('UNITPAY_curr')?></td>
 	<td>
-		<?$curr = COption::GetOptionString('czebra.unitpay', 'curr_'.$site['ID'], "RUB");?>
+		<?$curr = COption::GetOptionString('unitpay.paymodule', 'curr_'.$site['ID'], "RUB");?>
 		<select name="curr_<?=$site['ID']?>" style="width: 90%;">
 			<option value="RUB" <?if($curr=="RUB"):?>selected=""<?endif?>>
 				RUB (Рубль)
@@ -150,26 +150,26 @@ foreach($arAllOptions as $arOption):
 				USD (Доллар США)
 			</option>
 		</select>
-		<p><small><?=GetMessage('CZ_D_curr')?></small></p>
+		<p><small><?=GetMessage('UNITPAY_D_curr')?></small></p>
 	</td>
 </tr>
 <tr>
-	<td><?=GetMessage('CZ_lang')?></td>
+	<td><?=GetMessage('UNITPAY_lang')?></td>
 	<td>
-		<?$lang = COption::GetOptionString('czebra.unitpay', 'lang_'.$site['ID'], "ru");?>
+		<?$lang = COption::GetOptionString('unitpay.paymodule', 'lang_'.$site['ID'], "ru");?>
 		<select name="lang_<?=$site['ID']?>" style="width: 90%;">
 			<option value="ru" <?if($lang=="ru"):?>selected=""<?endif?>>Русский</option>
 			<option value="en" <?if($lang=="en"):?>selected=""<?endif?>>Английский</option>
 		</select>
-		<p><small><?=GetMessage('CZ_D_lang')?></small></p>
+		<p><small><?=GetMessage('UNITPAY_D_lang')?></small></p>
 	</td>
 </tr>
 
 
 <tr>
-	<td><?=GetMessage('CZ_typepay')?></td>
+	<td><?=GetMessage('UNITPAY_typepay')?></td>
 	<td>
-		<?$typepay = COption::GetOptionString('czebra.unitpay', 'typepay_'.$site['ID'], "");?>
+		<?$typepay = COption::GetOptionString('unitpay.paymodule', 'typepay_'.$site['ID'], "");?>
 		<select name="typepay_<?=$site['ID']?>" style="width: 90%;">
 			<option value="" <?if($typepay==""):?>selected="selected"<?endif?>>Любые</option>
 			<option value="mc" <?if($typepay=="mc"):?>selected="selected"<?endif?>>Мобильный платеж</option>
@@ -182,7 +182,7 @@ foreach($arAllOptions as $arOption):
 			<option value="alfaClick" <?if($typepay=="alfaClick"):?>selected="selected"<?endif?>>Альфа-Клик</option>
 			<option value="cash" <?if($typepay=="cash"):?>selected="selected"<?endif?>>Наличные</option>
 		</select>
-		<p><small><?=GetMessage('CZ_D_typepay')?></small></p>
+		<p><small><?=GetMessage('UNITPAY_D_typepay')?></small></p>
 	</td>
 </tr>
 

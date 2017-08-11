@@ -5,15 +5,15 @@ Loc::loadMessages(__FILE__);?>
 <?if(array_key_exists("error", $params)):?>
 	<?$mess = (SITE_CHARSET != "UFT-8") ? 
 			iconv('UTF-8', SITE_CHARSET,$params["error"]["message"]): $params["error"]["message"]?>
-	<p><?=GetMessage("CZ_UNITPAY_ERROR").": ".$mess?></p>
+	<p><?=GetMessage("UNITPAY_ERROR").": ".$mess?></p>
 <?else:?>
 	<?if($params["result"]["type"] == "redirect"):?>
 		<form action="<?=$params["result"]["redirectUrl"]?>" method="post" target="_blank" accept-charset="utf-8">
-		<input type="submit" value="<?=GetMessage("CZ_UNITPAY_BTN_PAY")?>">
+		<input type="submit" value="<?=GetMessage("UNITPAY_BTN_PAY")?>">
 		</form>
 	<?elseif($params["result"]["type"] == "invoice"):?>
 		<form action="<?=$params["result"]["receiptUrl"]?>" method="post" target="_blank" accept-charset="utf-8">
-    		<input type="submit" value="<?=GetMessage("CZ_UNITPAY_BTN_PAY_INVOICE")?>">
+    		<input type="submit" value="<?=GetMessage("UNITPAY_BTN_PAY_INVOICE")?>">
 		</form>
 	<?endif?>
 <?endif?>

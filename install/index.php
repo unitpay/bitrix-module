@@ -4,16 +4,16 @@ $pathInstall = substr($pathInstall, 0, strlen($pathInstall) - strlen('/index.php
 
 IncludeModuleLangFile($pathInstall . '/install.php');
 
-class czebra_unitpay extends CModule
+class unitpay_paymodule extends CModule
 {
-    var $MODULE_ID = "czebra.unitpay";
+    var $MODULE_ID = "unitpay.paymodule";
     var $MODULE_VERSION;
     var $MODULE_VERSION_DATE;
     var $MODULE_NAME;
     var $MODULE_DESCRIPTION;
 	var $MODULE_GROUP_RIGHTS = 'Y';
 
-    function czebra_unitpay(){
+    function unitpay_paymodule(){
         $arModuleVersion = array();
 
         $path = str_replace("\\", "/", __FILE__);
@@ -23,8 +23,8 @@ class czebra_unitpay extends CModule
             $this->MODULE_VERSION = $arModuleVersion["VERSION"];
             $this->MODULE_VERSION_DATE = $arModuleVersion["VERSION_DATE"];
         }
-		$this->MODULE_NAME = GetMessage('CZ_MODULE_NAME');
-		$this->MODULE_DESCRIPTION = GetMessage('CZ_MODULE_DESCRIPTION');
+		$this->MODULE_NAME = GetMessage('UNITPAY_MODULE_NAME');
+		$this->MODULE_DESCRIPTION = GetMessage('UNITPAY_MODULE_DESCRIPTION');
 
 		$this->PARTNER_NAME = GetMessage('DEVELOPER');
 		$this->PARTNER_URI = GetMessage('DEVELOPER_SITE');
@@ -68,7 +68,7 @@ class czebra_unitpay extends CModule
 	
 	function UnInstallFiles($arParams = array()){
 		DeleteDirFilesEx("/bitrix/php_interface/include/sale_payment/".$this->MODULE_ID);
-		DeleteDirFilesEx("/bitrix/php_interface/include/sale_payment/czebra_unitpay");
+		DeleteDirFilesEx("/bitrix/php_interface/include/sale_payment/unitpay_paymodule");
 		DeleteDirFilesEx("/unitpay_processor");
 		return true;
 	}
@@ -79,8 +79,8 @@ class czebra_unitpay extends CModule
 		$arr = array(
 			"reference_id" => array("D","W"),
 			"reference" => array(
-				"[D] ".GetMessage("CZEBRA_D"),
-				"[W] ".GetMessage("CZEBRA_W"))
+				"[D] ".GetMessage("UNITPAY_D"),
+				"[W] ".GetMessage("UNITPAY_W"))
 			);
 		return $arr;
 	}

@@ -4,14 +4,14 @@ include(GetLangFileName(dirname(__FILE__)."/", "/payment.php"));
 	$id =  CSalePaySystemAction::GetParamValue("OrderID");
 	$sum =  CSalePaySystemAction::GetParamValue("OrderSum");
 
-	$desc =  COption::GetOptionString('czebra.unitpay', 'desc_'.SITE_ID, '');
-	$url =  COption::GetOptionString('czebra.unitpay', 'pkey_'.SITE_ID, '');
-	$currency =  COption::GetOptionString('czebra.unitpay', 'curr_'.SITE_ID, '');
+	$desc =  COption::GetOptionString('unitpay.paymodule', 'desc_'.SITE_ID, '');
+	$url =  COption::GetOptionString('unitpay.paymodule', 'pkey_'.SITE_ID, '');
+	$currency =  COption::GetOptionString('unitpay.paymodule', 'curr_'.SITE_ID, '');
 	if(strlen($currency)==0)
 		$currency = "RUB";
-	$locale =  COption::GetOptionString('czebra.unitpay', 'lang_'.SITE_ID, '');
-	$SecretKey = COption::GetOptionString('czebra.unitpay', 'skey_'.SITE_ID, '');
-	$typepay = COption::GetOptionString('czebra.unitpay', 'typepay_'.SITE_ID, "");
+	$locale =  COption::GetOptionString('unitpay.paymodule', 'lang_'.SITE_ID, '');
+	$SecretKey = COption::GetOptionString('unitpay.paymodule', 'skey_'.SITE_ID, '');
+	$typepay = COption::GetOptionString('unitpay.paymodule', 'typepay_'.SITE_ID, "");
 ?>
 
 <form action="https://unitpay.ru/pay/<?=$url?>" method="post" target="_blank" accept-charset="utf-8">

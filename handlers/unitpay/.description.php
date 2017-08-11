@@ -1,7 +1,7 @@
 <?php
 use Bitrix\Main\Localization\Loc;
 Loc::loadMessages(__FILE__);
-$mod_lang = "CZ_UNITPAY_";
+$mod_lang = "UNITPAY_";
 $data = array(
 	'NAME' => Loc::getMessage($mod_lang.'NamePayment1'),
 	'SORT' => 500,

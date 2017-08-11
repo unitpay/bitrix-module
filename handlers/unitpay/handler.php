@@ -10,11 +10,11 @@ use Bitrix\Sale\PaySystem;
 use Bitrix\Sale\Payment;
 use Bitrix\Main\Web\HttpClient; 
 
-class czebra_unitpayHandler extends PaySystem\ServiceHandler
+class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 {   
 	public static function getIndicativeFields()
     {
-        return array('CZ_HANDLER' => 'CZUNITPAY');
+        return array('UNITPAY_HANDLER' => 'UNITPAY');
     }
     
     protected function getUrlList() 
@@ -33,7 +33,7 @@ class czebra_unitpayHandler extends PaySystem\ServiceHandler
 
     static protected function isMyResponseExtended(Request $request, $paySystemId)
     { 
-            //$id = $request->get('CZ_PAYSYSTEM_CODE');
+            //$id = $request->get('UNITPAY_PAYSYSTEM_CODE');
             return true;//$id == $paySystemId;         
     }
 
@@ -49,12 +49,12 @@ class czebra_unitpayHandler extends PaySystem\ServiceHandler
 
     public function initiatePay(Payment $payment, Request $request = null)
     {   
-        $paymentType = Option::get('czebra.unitpay', 'typepay_'.SITE_ID, "");
+        $paymentType = Option::get('unitpay.paymodule', 'typepay_'.SITE_ID, "");
         if($paymentType != ""){
 	        $url = $this->getUrl($payment, 'pay');
 	        $settings = $this->getParamsBusValue($payment);
 	        
-	        $desc = Option::get('czebra.unitpay', 'desc_'.SITE_ID);
+	        $desc = Option::get('unitpay.paymodule', 'desc_'.SITE_ID);
 	        $desc = (SITE_CHARSET != "UFT-8") ? iconv(SITE_CHARSET,'UTF-8',$desc) : $desc;
 	        $arParam = array(
 				'method' => 'initPayment',
@@ -62,13 +62,13 @@ class czebra_unitpayHandler extends PaySystem\ServiceHandler
 					'paymentType' => $paymentType,
 					'account' => $settings["OrderID"],
 					'sum' => $settings["OrderSum"],
-					'projectId' => Option::get('czebra.unitpay', 'pkey_'.SITE_ID),
+					'projectId' => Option::get('unitpay.paymodule', 'pkey_'.SITE_ID),
 					'desc' => $desc,
 					'ip' => $_SERVER['REMOTE_ADDR'],
-					'secretKey' => Option::get('czebra.unitpay', 'skey_'.SITE_ID),
+					'secretKey' => Option::get('unitpay.paymodule', 'skey_'.SITE_ID),
 					
-					'currency' => Option::get('czebra.unitpay', 'curr_'.SITE_ID),
-					'locale' => Option::get('czebra.unitpay', 'lang_'.SITE_ID),
+					'currency' => Option::get('unitpay.paymodule', 'curr_'.SITE_ID),
+					'locale' => Option::get('unitpay.paymodule', 'lang_'.SITE_ID),
 				)
 			);
 			$arTypeWithTelefon = array('qiwi', 'sms', 'mc', 'alfaClick');
@@ -81,7 +81,7 @@ class czebra_unitpayHandler extends PaySystem\ServiceHandler
 			}
 			$arTypeWithWM = array('webmoney');
 	        if(in_array($paymentType, $arTypeWithTelefon)){
-				$arParam['params']['purseType']	=  Option::get('czebra.unitpay', 'purseType_'.SITE_ID);
+				$arParam['params']['purseType']	=  Option::get('unitpay.paymodule', 'purseType_'.SITE_ID);
 			}
 			
 			
@@ -91,14 +91,14 @@ class czebra_unitpayHandler extends PaySystem\ServiceHandler
         }
         else{
 			$url = $this->getUrl($payment, 'pay_all');
-	        $url.= Option::get('czebra.unitpay', 'pkey_'.SITE_ID);
+	        $url.= Option::get('unitpay.paymodule', 'pkey_'.SITE_ID);
 	        $settings = $this->getParamsBusValue($payment);
 	        
 	        $account = $settings["OrderID"];
-	        $currency = Option::get('czebra.unitpay', 'curr_'.SITE_ID);
-	        $desc = Option::get('czebra.unitpay', 'desc_'.SITE_ID);
+	        $currency = Option::get('unitpay.paymodule', 'curr_'.SITE_ID);
+	        $desc = Option::get('unitpay.paymodule', 'desc_'.SITE_ID);
 	        $sum = $settings["OrderSum"];
-	        $SecretKey = Option::get('czebra.unitpay', 'skey_'.SITE_ID);
+	        $SecretKey = Option::get('unitpay.paymodule', 'skey_'.SITE_ID);
 	        
 	        $desc_uft8 = (SITE_CHARSET != "UFT-8") ? iconv(SITE_CHARSET,'UTF-8',$desc) : $desc;
 	        if(strlen($SecretKey)>0)
@@ -109,7 +109,7 @@ class czebra_unitpayHandler extends PaySystem\ServiceHandler
 	                    'account' => $account,
 	                    'sum' =>  $sum,
 	                    'currency' => $currency,
-	                    'locale' => Option::get('czebra.unitpay', 'lang_'.SITE_ID),
+	                    'locale' => Option::get('unitpay.paymodule', 'lang_'.SITE_ID),
 	                    'desc' => $desc,
 	                    'signature' => $signature,
 	        		);
@@ -191,8 +191,8 @@ class czebra_unitpayHandler extends PaySystem\ServiceHandler
 	{
 		$params = $request->get('params');
 		
-		$currency = Option::get('czebra.unitpay', 'curr_'.SITE_ID);
-		$projectId  = Option::get('czebra.unitpay', 'numb_'.SITE_ID);
+		$currency = Option::get('unitpay.paymodule', 'curr_'.SITE_ID);
+		$projectId  = Option::get('unitpay.paymodule', 'numb_'.SITE_ID);
 		$id = $this->getBusinessValue($payment, 'OrderID');
 		$paymentSum = $this->getBusinessValue($payment, 'OrderSum');
 		if ( 

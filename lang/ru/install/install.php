@@ -1,14 +1,14 @@
 <?
 global $MESS;
 
-$MESS['DEVELOPER'] = 'Цветная зебра';
-$MESS['DEVELOPER_SITE'] = 'http://www.czebra.ru/';
+$MESS['DEVELOPER'] = 'UnitPay';
+$MESS['DEVELOPER_SITE'] = 'https://unitpay.ru/';
 
-$MESS['CZ_MODULE_NAME'] = 'Платежная система UnitPay';
-$MESS['CZ_MODULE_DESCRIPTION'] = 'универсальное платежное решение';
+$MESS['UNITPAY_MODULE_NAME'] = 'Платежная система UnitPay';
+$MESS['UNITPAY_MODULE_DESCRIPTION'] = 'универсальное платежное решение';
 
-$MESS['CZEBRA_D'] = 'доступ закрыт';
-$MESS['CZEBRA_R'] = 'доступ открыт';
-$MESS['CZEBRA_W'] = 'полный доступ';
+$MESS['UNITPAY_D'] = 'доступ закрыт';
+$MESS['UNITPAY_R'] = 'доступ открыт';
+$MESS['UNITPAY_W'] = 'полный доступ';
 
 ?>

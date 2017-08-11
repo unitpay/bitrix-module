@@ -1,5 +1,5 @@
 <?php
-$mod_lang = "CZ_UNITPAY_";
+$mod_lang = "UNITPAY_";
 
 global $MESS;
 $MESS[$mod_lang."NamePayment1"] = "UnitPay";
