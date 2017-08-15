@@ -9,6 +9,7 @@ $MESS['UNITPAY_curr'] = 'Валюта';
 $MESS['UNITPAY_lang'] = 'Язык формы оплаты';
 $MESS['UNITPAY_typepay'] = 'Способы оплаты';
 $MESS['UNITPAY_purseType'] = 'Типа кошелька на который будет идти оплата в системе Wemboney';
+$MESS['UNITPAY_cashboxItems'] = 'Передавать содержание заказа для чека';
 
 $MESS['UNITPAY_D_numb'] = 'Указан в заголовке названия проекта личного кабинета unitpay';
 $MESS['UNITPAY_D_pkey'] = 'Указан на странице проекта личного кабинета unitpay в разделе "Форма оплаты"';
@@ -18,6 +19,7 @@ $MESS['UNITPAY_D_curr'] = 'Валюта, в которой выставляется сумма к оплате';
 $MESS['UNITPAY_D_lang'] = '';
 $MESS['UNITPAY_D_typepay'] = '';
 $MESS['UNITPAY_D_purseType'] = 'Например, WMR. Используеться есть в настройках модуля UnitPay выбран "Способ платежа" -  WebMoney';
+$MESS['UNITPAY_D_cashboxItems'] = 'Данная опция актуальна, если на стороне UnitPay подключена касса';
 
 
 $MESS['UNITPAY_PROP'] = 'Настройки UnitPay';

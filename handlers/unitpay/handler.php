@@ -68,62 +68,66 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 
         $orderItems = array();
 
-        foreach ($order->getShipmentCollection() as $item) {
-            if (count($item->getShipmentItemCollection())) {
-                foreach($item->getShipmentItemCollection() as $shipmentItem) {
-                    $basketItem = $shipmentItem->getBasketItem();
-                    if ($basketItem->isBundleChild())
-                        continue;
+        if (Option::get('unitpay.paymodule', 'cashboxItems_'.SITE_ID) == 'Y') {
+
+
+            foreach ($order->getShipmentCollection() as $item) {
+                if (count($item->getShipmentItemCollection())) {
+                    foreach($item->getShipmentItemCollection() as $shipmentItem) {
+                        $basketItem = $shipmentItem->getBasketItem();
+                        if ($basketItem->isBundleChild())
+                            continue;
 
 
 
-                    $orderItem = array(
-                        'name'	=>	$basketItem->getField('NAME'),
-                        'price'	=>	$basketItem->getPrice(),
-                        'sum'	=>	$basketItem->getFinalPrice(),
-                        'count' => (float) $basketItem->getQuantity(),
+                        $orderItem = array(
+                            'name'	=>	$basketItem->getField('NAME'),
+                            'price'	=>	$basketItem->getPrice(),
+                            'sum'	=>	$basketItem->getFinalPrice(),
+                            'count' => (float) $basketItem->getQuantity(),
 
+                        );
+
+                        $vatInfo = $this->getProductVatInfo($basketItem);
+
+                        if ($vatInfo) {
+                            $orderItem['with_nds'] = $vatInfo['RATE'] == 18;
+                        }
+
+                        $discountPrice = 0;
+                        if ($basketItem->isCustomPrice())
+                        {
+                            $discountPrice = $basketItem->getBasePrice() - $basketItem->getPrice();
+                        }
+                        else
+                        {
+                            if ($basketItem->getDiscountPrice() > 0)
+                                $discountPrice = (float)$basketItem->getDiscountPrice();
+                        }
+
+                        $orderItems[] = $orderItem;
+                    }
+
+                    $vatInfo = $this->getDeliveryVatInfo($item);
+
+                    $deliveryItem = array(
+                        'name' => $item->getField('DELIVERY_NAME'),
+                        'price' => (float)$item->getPrice(),
+                        'sum' => (float)$item->getPrice(),
+                        'count' => 1
                     );
-
-                    $vatInfo = $this->getProductVatInfo($basketItem);
-
                     if ($vatInfo) {
-                        $orderItem['with_nds'] = $vatInfo['RATE'] == 18;
+                        $deliveryItem['with_nds'] = $vatInfo['RATE'] == 18;
                     }
 
-                    $discountPrice = 0;
-                    if ($basketItem->isCustomPrice())
+                    $deliveryDiscountPrice = 0;
+                    if (!$item->isCustomPrice() && $item->getField('DISCOUNT_PRICE') > 0)
                     {
-                        $discountPrice = $basketItem->getBasePrice() - $basketItem->getPrice();
-                    }
-                    else
-                    {
-                        if ($basketItem->getDiscountPrice() > 0)
-                            $discountPrice = (float)$basketItem->getDiscountPrice();
+                        $deliveryDiscountPrice = $item->getField('DISCOUNT_PRICE');
                     }
 
-                    $orderItems[] = $orderItem;
+                    $orderItems[] = $deliveryItem;
                 }
-
-                $vatInfo = $this->getDeliveryVatInfo($item);
-
-                $deliveryItem = array(
-                    'name' => $item->getField('DELIVERY_NAME'),
-                    'price' => (float)$item->getPrice(),
-                    'sum' => (float)$item->getPrice(),
-                    'count' => 1
-                );
-                if ($vatInfo) {
-                    $deliveryItem['with_nds'] = $vatInfo['RATE'] == 18;
-                }
-
-                $deliveryDiscountPrice = 0;
-                if (!$item->isCustomPrice() && $item->getField('DISCOUNT_PRICE') > 0)
-                {
-                    $deliveryDiscountPrice = $item->getField('DISCOUNT_PRICE');
-                }
-
-                $orderItems[] = $deliveryItem;
             }
         }
 
