@@ -13,5 +13,14 @@ Loc::loadMessages(__FILE__);
 	<?if(strlen($params["signature"])>0):?>
 		<input type="hidden" name="signature" value="<?=$params["signature"]?>">
 	<?endif?>
+	<?if(isset($params["customerEmail"]) && strlen($params["customerEmail"])>0):?>
+		<input type="hidden" name="customerEmail" value="<?=$params["customerEmail"]?>">
+	<?endif?>
+	<?if(isset($params["customerPhone"]) && strlen($params["customerPhone"])>0):?>
+		<input type="hidden" name="customerPhone" value="<?=$params["customerPhone"]?>">
+	<?endif?>
+	<?if(isset($params["cashItems"]) && strlen($params["cashItems"])>0):?>
+		<input type="hidden" name="cashItems" value="<?=$params["cashItems"]?>">
+	<?endif?>
     <input type="submit" value="<?=GetMessage("UNITPAY_BTN_PAY")?>">
 </form>

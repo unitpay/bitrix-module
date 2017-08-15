@@ -12,6 +12,7 @@ include(GetLangFileName(dirname(__FILE__)."/", "/payment.php"));
 	$locale =  COption::GetOptionString('unitpay.paymodule', 'lang_'.SITE_ID, '');
 	$SecretKey = COption::GetOptionString('unitpay.paymodule', 'skey_'.SITE_ID, '');
 	$typepay = COption::GetOptionString('unitpay.paymodule', 'typepay_'.SITE_ID, "");
+
 ?>
 
 <form action="https://unitpay.ru/pay/<?=$url?>" method="post" target="_blank" accept-charset="utf-8">
