@@ -1,7 +1,7 @@
 <?
 use \Bitrix\Main\Application;
 
-define("NO_KEEP_STATISTIC", true); 
+define("NO_KEEP_STATISTIC", true);
 define("NOT_CHECK_PERMISSIONS", true);
 
 define("STOP_STATISTICS", true);
@@ -16,16 +16,16 @@ if (CModule::IncludeModule("sale"))
 
     $item = Bitrix\Sale\PaySystem\Manager::searchByRequest($request);
     $service = new Bitrix\Sale\PaySystem\Service($item);
-    $result = $service->processRequest($request);  
-    
+    $result = $service->processRequest($request);
+
     //print_r($result);
-    
+
     if($result->isSuccess()){
 		$method = $request->get('method');
-        if ($method  == 'check'){ 
+        if ($method  == 'check'){
         	echo json_encode(array("result" => array("message" => 'Check Success')));
         }
-        elseif ($method == 'pay'){ 
+        elseif ($method == 'pay'){
         	echo json_encode(array("result" => array("message" => 'Pay Success')));
         }
         else{
@@ -34,8 +34,10 @@ if (CModule::IncludeModule("sale"))
 	}
 	else{
 		$message = implode(";", $result->getErrorMessages());
-		$message = (SITE_CHARSET != "UFT-8") ? iconv(SITE_CHARSET,'UTF-8',$message) : $message;
+                if (strtoupper(SITE_CHARSET) != 'UTF-8') {
+                        $message = \Bitrix\Main\Text\Encoding::convertEncodingArray($message, SITE_CHARSET, "UTF-8");
+                }
 		echo json_encode(array("result" => array("error" => $message)));
 	}
-}	
+}
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");

@@ -14,6 +14,8 @@ use Bitrix\Main\Web\HttpClient;
 use Bitrix\Sale\BasketItem;
 use Bitrix\Sale\Shipment;
 
+define('UNITPAY_PAYMENT_INIT_API', false);
+
 class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 {
     public static function getIndicativeFields()
@@ -38,7 +40,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
     static protected function isMyResponseExtended(Request $request, $paySystemId)
     {
         //$id = $request->get('UNITPAY_PAYSYSTEM_CODE');
-        return true;//$id == $paySystemId;         
+        return true;//$id == $paySystemId;
     }
 
     protected function isTestMode()
@@ -64,6 +66,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
         }
         if ($properties->getPhone()) {
             $userPhone = $properties->getPhone()->getValue();
+            $userPhone = preg_replace('/[^0-9]/', '', $userPhone);
         }
 
         $orderItems = array();
@@ -84,7 +87,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                             'name'	=>	$basketItem->getField('NAME'),
                             'price'	=>	$basketItem->getPrice(),
                             'sum'	=>	$basketItem->getFinalPrice(),
-                            'count' => (float) $basketItem->getQuantity(),
+                            'count' => (float)  $basketItem->getQuantity(),
 
                         );
 
@@ -132,12 +135,20 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
         }
 
         $paymentType = Option::get('unitpay.paymodule', 'typepay_'.SITE_ID, "");
-        if($paymentType != ""){
+        $settings = $this->getParamsBusValue($payment);
+        if (isset($settings['Typepay']) && $settings['Typepay'] !== 'default') {
+                $paymentType = $settings['Typepay'];
+        }
+        if ($paymentType == 'any') {
+                $paymentType = '';
+        }
+        if(UNITPAY_PAYMENT_INIT_API && $paymentType != ""){
             $url = $this->getUrl($payment, 'pay');
-            $settings = $this->getParamsBusValue($payment);
 
             $desc = Option::get('unitpay.paymodule', 'desc_'.SITE_ID);
-            $desc = (SITE_CHARSET != "UFT-8") ? iconv(SITE_CHARSET,'UTF-8',$desc) : $desc;
+            if (strtoupper(SITE_CHARSET) != 'UTF-8') {
+                    $desc = \Bitrix\Main\Text\Encoding::convertEncodingArray($desc, SITE_CHARSET, "UTF-8");
+            }
             $arParam = array(
                 'method' => 'initPayment',
                 'params' => array(
@@ -148,7 +159,6 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                     'desc' => $desc,
                     'ip' => $_SERVER['REMOTE_ADDR'],
                     'secretKey' => Option::get('unitpay.paymodule', 'skey_'.SITE_ID),
-
                     'currency' => Option::get('unitpay.paymodule', 'curr_'.SITE_ID),
                     'locale' => Option::get('unitpay.paymodule', 'lang_'.SITE_ID),
                 )
@@ -183,6 +193,9 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
         else{
             $url = $this->getUrl($payment, 'pay_all');
             $url.= Option::get('unitpay.paymodule', 'pkey_'.SITE_ID);
+            if ($paymentType) {
+                    $url .= '/'.$paymentType;
+            }
             $settings = $this->getParamsBusValue($payment);
 
             $account = $settings["OrderID"];
@@ -191,9 +204,12 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
             $sum = $settings["OrderSum"];
             $SecretKey = Option::get('unitpay.paymodule', 'skey_'.SITE_ID);
 
-            $desc_uft8 = (SITE_CHARSET != "UFT-8") ? iconv(SITE_CHARSET,'UTF-8',$desc) : $desc;
+            $desc_utf8 = $desc;
+            if (strtoupper(SITE_CHARSET) != 'UTF-8') {
+                    $desc_utf8 = \Bitrix\Main\Text\Encoding::convertEncodingArray($desc_utf8, SITE_CHARSET, "UTF-8");
+            }
             if(strlen($SecretKey)>0)
-                $signature = hash('sha256', $id.'{up}'.$currency.'{up}'.$desc_uft8.'{up}'.$sum.'{up}'.$SecretKey);
+                $signature = hash('sha256', $account.'{up}'.$currency.'{up}'.$desc_utf8.'{up}'.$sum.'{up}'.$SecretKey);
 
             $params = array(
                 'url' => $url,
@@ -204,6 +220,12 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                 'desc' => $desc,
                 'signature' => $signature,
             );
+
+            if ($paymentType) {
+                    $params['hideMenu'] = true;
+                    $params['hideOtherMethods'] = true;
+                //     $params['hideOtherPSMethods'] = 'true';
+            }
 
             if ($userEmail) {
                 $params['customerEmail'] = $userEmail;

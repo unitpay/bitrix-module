@@ -26,15 +26,15 @@ IncludeModuleLangFile(__FILE__);
 	$siteCount = count($siteList);
 
 $arAllOptions = Array(
-	Array("numb_", GetMessage('UNITPAY_numb'), array("text"), "",GetMessage('UNITPAY_D_numb')),	
-	Array("pkey_", GetMessage('UNITPAY_pkey'), array("text"), "",GetMessage('UNITPAY_D_pkey')),	
-	Array("skey_", GetMessage('UNITPAY_skey'), array("text"), "",GetMessage('UNITPAY_D_skey')),	
+	Array("numb_", GetMessage('UNITPAY_numb'), array("text"), "",GetMessage('UNITPAY_D_numb')),
+	Array("pkey_", GetMessage('UNITPAY_pkey'), array("text"), "",GetMessage('UNITPAY_D_pkey')),
+	Array("skey_", GetMessage('UNITPAY_skey'), array("text"), "",GetMessage('UNITPAY_D_skey')),
 	Array("desc_", GetMessage('UNITPAY_desc'), array("text"), "",GetMessage('UNITPAY_D_desc')),
 	Array("purseType_", GetMessage('UNITPAY_purseType'), array("text"), "",GetMessage('UNITPAY_D_purseType')),
-	Array("cashboxItems_", GetMessage('UNITPAY_cashboxItems'), array("checkbox"), "",GetMessage('UNITPAY_D_cashboxItems')),	
-	
-	//Array("curr_", GetMessage('UNITPAY_curr'), array("text"), ""),	
-	//Array("lang_", GetMessage('UNITPAY_lang'), array("text"), ""),	
+	Array("cashboxItems_", GetMessage('UNITPAY_cashboxItems'), array("checkbox"), "",GetMessage('UNITPAY_D_cashboxItems')),
+
+	//Array("curr_", GetMessage('UNITPAY_curr'), array("text"), ""),
+	//Array("lang_", GetMessage('UNITPAY_lang'), array("text"), ""),
 );
 
 $aTabs = array(
@@ -57,53 +57,53 @@ if($REQUEST_METHOD=="POST" && strlen($Update.$Apply.$RestoreDefaults)>0 && check
 	else{
 		foreach($siteList as $site)
 		{
-			COption::SetOptionString('unitpay.paymodule', 'numb_'.$site['ID'], 
-												$_POST['numb_'.$site['ID']]);	
-			COption::SetOptionString('unitpay.paymodule', 'pkey_'.$site['ID'], 
-												$_POST['pkey_'.$site['ID']]);	
-			COption::SetOptionString('unitpay.paymodule', 'skey_'.$site['ID'], 
-												$_POST['skey_'.$site['ID']]);	
-			COption::SetOptionString('unitpay.paymodule', 'desc_'.$site['ID'], 
-												$_POST['desc_'.$site['ID']]);	
-			COption::SetOptionString('unitpay.paymodule', 'curr_'.$site['ID'], 
-												$_POST['curr_'.$site['ID']]);	
-			COption::SetOptionString('unitpay.paymodule', 'lang_'.$site['ID'], 
-												$_POST['lang_'.$site['ID']]);	
-			
-			COption::SetOptionString('unitpay.paymodule', 'purseType_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'numb_'.$site['ID'],
+												$_POST['numb_'.$site['ID']]);
+			COption::SetOptionString('unitpay.paymodule', 'pkey_'.$site['ID'],
+												$_POST['pkey_'.$site['ID']]);
+			COption::SetOptionString('unitpay.paymodule', 'skey_'.$site['ID'],
+												$_POST['skey_'.$site['ID']]);
+			COption::SetOptionString('unitpay.paymodule', 'desc_'.$site['ID'],
+												$_POST['desc_'.$site['ID']]);
+			COption::SetOptionString('unitpay.paymodule', 'curr_'.$site['ID'],
+												$_POST['curr_'.$site['ID']]);
+			COption::SetOptionString('unitpay.paymodule', 'lang_'.$site['ID'],
+												$_POST['lang_'.$site['ID']]);
+
+			COption::SetOptionString('unitpay.paymodule', 'purseType_'.$site['ID'],
 												$_POST['purseType_'.$site['ID']]);
 
-			COption::SetOptionString('unitpay.paymodule', 'cashboxItems_'.$site['ID'], 
+			COption::SetOptionString('unitpay.paymodule', 'cashboxItems_'.$site['ID'],
 												$_POST['cashboxItems_'.$site['ID']]);
-			
-			COption::SetOptionString('unitpay.paymodule', 'typepay_'.$site['ID'], 
-												$_POST['typepay_'.$site['ID']]);	
+
+			COption::SetOptionString('unitpay.paymodule', 'typepay_'.$site['ID'],
+												$_POST['typepay_'.$site['ID']]);
 		}
 	}
 }
 
 $tabControl->Begin();
 ?>
-<form 
+<form
 	method="POST"  enctype="multipart/form-data"
-	action="<?echo $APPLICATION->GetCurPage()?>?mid=<?=htmlspecialcharsbx($mid)?>&amp;lang=<?echo LANG?>" 
+	action="<?echo $APPLICATION->GetCurPage()?>?mid=<?=htmlspecialcharsbx($mid)?>&amp;lang=<?echo LANG?>"
 	name="antispampro_settings">
 <?=bitrix_sessid_post();?>
 <?
 $tabControl->BeginNextTab();?>
 
 <td colspan="2" align="center">
-		<table cellspacing="0" cellpadding="0" border="0" class="internal" style="width: 85%;"> 
+		<table cellspacing="0" cellpadding="0" border="0" class="internal" style="width: 85%;">
 <?
 foreach($siteList as $site)
 		{
-		?>	
+		?>
 			<tr colspan="2" class="heading">
 				<td valign="top">
 					[<a href="site_edit.php?LID=<?=$site["ID"]?>&lang=<?=LANGUAGE_ID?>" title="<?=GetMessage("SALE_SITE_ALT")?>"><?echo $site["ID"] ?></a>] <?echo ($site["NAME"]) ?>
 				</td>
-			</tr>	
-			<tr colspan="2">	
+			</tr>
+			<tr colspan="2">
 				<td>
 					<table style="width: 100%;">
 <?
@@ -130,7 +130,7 @@ foreach($arAllOptions as $arOption):
 		?><textarea rows="<?echo $type[1]?>" cols="<?echo $type[2]?>" name="<?echo htmlspecialcharsbx($arOption[0]).$site['ID']?>" style="width:90%;"><?echo htmlspecialcharsbx($val)?></textarea><?
 	endif;
 	?></td>
-	
+
 </tr>
 <?endforeach;?>
 <tr>
@@ -193,9 +193,9 @@ foreach($arAllOptions as $arOption):
 </table>
 		</td>
 	</tr>
-	
+
 		<?}?>
-		
+
 </table>
 		</td>
 

@@ -22,5 +22,14 @@ Loc::loadMessages(__FILE__);
 	<?if(isset($params["cashItems"]) && strlen($params["cashItems"])>0):?>
 		<input type="hidden" name="cashItems" value="<?=$params["cashItems"]?>">
 	<?endif?>
+	<?if(isset($params["hideMenu"])):?>
+		<input type="hidden" name="hideMenu" value="true">
+	<?endif?>
+	<?if(isset($params["hideOtherMethods"])):?>
+		<input type="hidden" name="hideOtherMethods" value="true">
+	<?endif?>
+	<?if(isset($params["hideOtherPSMethods"])):?>
+		<input type="hidden" name="hideOtherPSMethods" value="true">
+	<?endif?>
     <input type="submit" value="<?=GetMessage("UNITPAY_BTN_PAY")?>">
 </form>

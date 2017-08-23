@@ -14,3 +14,5 @@ $MESS[$mod_lang."DESC_Operator"] = "Используеться есть в настройках модуля UnitP
 
 $MESS[$mod_lang."ORDER_INFO"] = "Информация о заказе";
 
+$MESS[$mod_lang."Typepay"] = "Способ оплаты";
+$MESS[$mod_lang."DESC_Typepay"] = "";
