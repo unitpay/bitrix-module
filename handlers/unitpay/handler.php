@@ -73,7 +73,6 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 
         if (Option::get('unitpay.paymodule', 'cashboxItems_'.SITE_ID) == 'Y') {
 
-
             foreach ($order->getShipmentCollection() as $item) {
                 if (count($item->getShipmentItemCollection())) {
                     foreach($item->getShipmentItemCollection() as $shipmentItem) {
@@ -81,13 +80,11 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                         if ($basketItem->isBundleChild())
                             continue;
 
-
-
                         $orderItem = array(
                             'name'	=>	$basketItem->getField('NAME'),
-                            'price'	=>	$basketItem->getPrice(),
-                            'sum'	=>	$basketItem->getFinalPrice(),
-                            'count' => (float)  $basketItem->getQuantity(),
+                            'price'	=>	number_format($basketItem->getPrice(), 2, '.', ''),
+                            'sum'	=>	number_format($basketItem->getFinalPrice(), 2, '.', ''),
+                            'count'     =>      number_format($basketItem->getQuantity(), 3, '.', ''),
 
                         );
 
@@ -105,8 +102,9 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                         else
                         {
                             if ($basketItem->getDiscountPrice() > 0)
-                                $discountPrice = (float)$basketItem->getDiscountPrice();
+                                $discountPrice = (float) $basketItem->getDiscountPrice();
                         }
+                        $discountPrice = number_format($discountPrice, 2, '.', '');
 
                         $orderItems[] = $orderItem;
                     }
@@ -115,9 +113,9 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 
                     $deliveryItem = array(
                         'name' => $item->getField('DELIVERY_NAME'),
-                        'price' => (float)$item->getPrice(),
-                        'sum' => (float)$item->getPrice(),
-                        'count' => 1
+                        'price' => number_format($item->getPrice(), 2, '.', ''),
+                        'sum' => number_format($item->getPrice(), 2, '.', ''),
+                        'count' => '1.000'
                     );
                     if ($vatInfo) {
                         $deliveryItem['with_nds'] = $vatInfo['RATE'] == 18;
@@ -128,6 +126,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                     {
                         $deliveryDiscountPrice = $item->getField('DISCOUNT_PRICE');
                     }
+                    $deliveryDiscountPrice = number_format($deliveryDiscountPrice, 2, '.', '');
 
                     $orderItems[] = $deliveryItem;
                 }
@@ -154,7 +153,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                 'params' => array(
                     'paymentType' => $paymentType,
                     'account' => $settings["OrderID"],
-                    'sum' => $settings["OrderSum"],
+                    'sum' => number_format($settings["OrderSum"], 2, '.', ''),
                     'projectId' => Option::get('unitpay.paymodule', 'numb_'.SITE_ID),
                     'desc' => $desc,
                     'ip' => $_SERVER['REMOTE_ADDR'],
@@ -201,7 +200,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
             $account = $settings["OrderID"];
             $currency = Option::get('unitpay.paymodule', 'curr_'.SITE_ID);
             $desc = Option::get('unitpay.paymodule', 'desc_'.SITE_ID);
-            $sum = $settings["OrderSum"];
+            $sum = number_format($settings["OrderSum"], 2, '.', '');
             $SecretKey = Option::get('unitpay.paymodule', 'skey_'.SITE_ID);
 
             $desc_utf8 = $desc;
@@ -269,7 +268,8 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 
         if (!$this->isCorrect($payment, $request))
         {
-            $errorMessage = 'Incorrect payment \'sum\', \'currency\', \'projectId\', \'order id\'';
+        //     $errorMessage = 'Incorrect payment \'sum\', \'currency\', \'projectId\', \'order id\'';
+            $errorMessage = Loc::getMessage('UNITPAY_Error');
 
             $result->addError(new Error($errorMessage));
             PaySystem\ErrorLog::add(array(
@@ -299,7 +299,8 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
             $result->setOperationType(PaySystem\ServiceResult::MONEY_COMING);
         }
         else{
-            $errorMessage = 'Incorrect payment \'sum\', \'currency\', \'projectId\', \'order id\'';
+        //     $errorMessage = 'Incorrect payment \'sum\', \'currency\', \'projectId\', \'order id\'';
+            $errorMessage = Loc::getMessage('UNITPAY_Error');
 
             $result->addError(new Error($errorMessage));
             PaySystem\ErrorLog::add(array(
@@ -320,7 +321,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
         $id = $this->getBusinessValue($payment, 'OrderID');
         $paymentSum = $this->getBusinessValue($payment, 'OrderSum');
         if (
-            $params['sum'] == $paymentSum
+            number_format($params['sum'], 2, '.', '') == number_format($paymentSum, 2, '.', '')
             && $params['orderCurrency'] == $currency
             && $params['account'] == $id
             && $params['projectId'] == $projectId

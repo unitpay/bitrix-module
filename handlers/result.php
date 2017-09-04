@@ -21,23 +21,20 @@ if (CModule::IncludeModule("sale"))
     //print_r($result);
 
     if($result->isSuccess()){
-		$method = $request->get('method');
+	$method = $request->get('method');
         if ($method  == 'check'){
         	echo json_encode(array("result" => array("message" => 'Check Success')));
-        }
-        elseif ($method == 'pay'){
+        } elseif ($method == 'pay'){
         	echo json_encode(array("result" => array("message" => 'Pay Success')));
-        }
-        else{
-			echo json_encode(array("result" => array("error" => 'No connect')));
-		}
+        } else {
+			echo json_encode(array("error" => array("message" => 'No connect')));
 	}
-	else{
+    } else {
 		$message = implode(";", $result->getErrorMessages());
                 if (strtoupper(SITE_CHARSET) != 'UTF-8') {
                         $message = \Bitrix\Main\Text\Encoding::convertEncodingArray($message, SITE_CHARSET, "UTF-8");
                 }
-		echo json_encode(array("result" => array("error" => $message)));
-	}
+		echo json_encode(array("error" => array("message" => $message)));
+    }
 }
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");
