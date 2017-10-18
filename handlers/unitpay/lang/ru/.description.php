@@ -16,3 +16,15 @@ $MESS[$mod_lang."ORDER_INFO"] = "Информация о заказе";
 
 $MESS[$mod_lang."Typepay"] = "Способ оплаты";
 $MESS[$mod_lang."DESC_Typepay"] = "";
+
+$MESS[$mod_lang.'PAYTYPE_default'] = 'По-умолчанию (из настроек модуля)';
+$MESS[$mod_lang.'PAYTYPE_any'] = 'Любые';
+$MESS[$mod_lang.'PAYTYPE_mc'] = 'Мобильный платеж';
+$MESS[$mod_lang.'PAYTYPE_sms'] = 'SMS-оплата';
+$MESS[$mod_lang.'PAYTYPE_card'] = 'Пластиковые карты';
+$MESS[$mod_lang.'PAYTYPE_webmoney'] = 'WebMoney';
+$MESS[$mod_lang.'PAYTYPE_yandex'] = 'Яндекс.Деньги';
+$MESS[$mod_lang.'PAYTYPE_qiwi'] = 'Qiwi';
+$MESS[$mod_lang.'PAYTYPE_paypal'] = 'PayPal';
+$MESS[$mod_lang.'PAYTYPE_alfaClick'] = 'Альфа-Клик';
+$MESS[$mod_lang.'PAYTYPE_cash'] = 'Наличные';

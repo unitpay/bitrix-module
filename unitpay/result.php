@@ -37,8 +37,9 @@
 			$sum = $arOrder["PRICE"];
 
 			$currency = COption::GetOptionString('unitpay.paymodule', 'curr_'.$arOrder["LID"], '');
-			if(strlen($currency)==0)
+			if(strlen($currency)==0) {
 				$currency = "RUB";
+			}
 			$projectId = COption::GetOptionString('unitpay.paymodule', 'numb_'.$arOrder["LID"], '');
 
 			if ((double)$params['orderSum'] != (double)$sum ||
@@ -50,8 +51,9 @@
 			}
 
 
-			if ($method  == 'check')  { print UnitPayMessage::getMessage('Check Success'); }
-			elseif ($method == 'pay') {
+			if ($method  == 'check')  {
+				print UnitPayMessage::getMessage('Check Success');
+			} elseif ($method == 'pay') {
 				CSaleOrder::PayOrder((int)$id, "Y");
 				print UnitPayMessage::getMessage('Pay Success');
 

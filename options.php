@@ -139,19 +139,19 @@ foreach($arAllOptions as $arOption):
 		<?$curr = COption::GetOptionString('unitpay.paymodule', 'curr_'.$site['ID'], "RUB");?>
 		<select name="curr_<?=$site['ID']?>" style="width: 90%;">
 			<option value="RUB" <?if($curr=="RUB"):?>selected=""<?endif?>>
-				RUB (Рубль)
+				<?=GetMessage('UNITPAY_CURRENCY_RUB'); ?>
 			</option>
 			<option value="UAH" <?if($curr=="UAH"):?>selected=""<?endif?>>
-				UAH (Гривна)
+				<?=GetMessage('UNITPAY_CURRENCY_UAH'); ?>
 			</option>
 			<option value="BYR" <?if($curr=="BYR"):?>selected=""<?endif?>>
-				BYR (Белорусский рубль)
+				<?=GetMessage('UNITPAY_CURRENCY_BYR'); ?>
 			</option>
 			<option value="EUR" <?if($curr=="EUR"):?>selected=""<?endif?>>
-				EUR (Евро)
+				<?=GetMessage('UNITPAY_CURRENCY_EUR'); ?>
 			</option>
 			<option value="USD" <?if($curr=="USD"):?>selected=""<?endif?>>
-				USD (Доллар США)
+				<?=GetMessage('UNITPAY_CURRENCY_USD'); ?>
 			</option>
 		</select>
 		<p><small><?=GetMessage('UNITPAY_D_curr')?></small></p>
@@ -162,8 +162,8 @@ foreach($arAllOptions as $arOption):
 	<td>
 		<?$lang = COption::GetOptionString('unitpay.paymodule', 'lang_'.$site['ID'], "ru");?>
 		<select name="lang_<?=$site['ID']?>" style="width: 90%;">
-			<option value="ru" <?if($lang=="ru"):?>selected=""<?endif?>>Русский</option>
-			<option value="en" <?if($lang=="en"):?>selected=""<?endif?>>Английский</option>
+			<option value="ru" <?if($lang=="ru"):?>selected=""<?endif?>><?=GetMessage('UNITPAY_LANG_RU'); ?></option>
+			<option value="en" <?if($lang=="en"):?>selected=""<?endif?>><?=GetMessage('UNITPAY_LANG_EN'); ?></option>
 		</select>
 		<p><small><?=GetMessage('UNITPAY_D_lang')?></small></p>
 	</td>
@@ -175,16 +175,16 @@ foreach($arAllOptions as $arOption):
 	<td>
 		<?$typepay = COption::GetOptionString('unitpay.paymodule', 'typepay_'.$site['ID'], "");?>
 		<select name="typepay_<?=$site['ID']?>" style="width: 90%;">
-			<option value="" <?if($typepay==""):?>selected="selected"<?endif?>>Любые</option>
-			<option value="mc" <?if($typepay=="mc"):?>selected="selected"<?endif?>>Мобильный платеж</option>
-			<option value="sms" <?if($typepay=="sms"):?>selected="selected"<?endif?>>SMS-оплата</option>
-			<option value="card" <?if($typepay=="card"):?>selected="selected"<?endif?>>Пластиковые карты</option>
-			<option value="webmoney" <?if($typepay=="webmoney"):?>selected="selected"<?endif?>>WebMoney</option>
-			<option value="yandex" <?if($typepay=="yandex"):?>selected="selected"<?endif?>>Яндекс.Деньги</option>
-			<option value="qiwi" <?if($typepay=="qiwi"):?>selected="selected"<?endif?>>Qiwi</option>
-			<option value="paypal" <?if($typepay=="paypal"):?>selected="selected"<?endif?>>PayPal</option>
-			<option value="alfaClick" <?if($typepay=="alfaClick"):?>selected="selected"<?endif?>>Альфа-Клик</option>
-			<option value="cash" <?if($typepay=="cash"):?>selected="selected"<?endif?>>Наличные</option>
+			<option value="" <?if($typepay==""):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_any'); ?></option>
+			<option value="mc" <?if($typepay=="mc"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_mc'); ?></option>
+			<option value="sms" <?if($typepay=="sms"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_sms'); ?></option>
+			<option value="card" <?if($typepay=="card"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_card'); ?></option>
+			<option value="webmoney" <?if($typepay=="webmoney"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_webmoney'); ?></option>
+			<option value="yandex" <?if($typepay=="yandex"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_yandex'); ?></option>
+			<option value="qiwi" <?if($typepay=="qiwi"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_qiwi'); ?></option>
+			<option value="paypal" <?if($typepay=="paypal"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_paypal'); ?></option>
+			<option value="alfaClick" <?if($typepay=="alfaClick"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_alfaClick'); ?></option>
+			<option value="cash" <?if($typepay=="cash"):?>selected="selected"<?endif?>><?=GetMessage('UNITPAY_PAYTYPE_cash'); ?></option>
 		</select>
 		<p><small><?=GetMessage('UNITPAY_D_typepay')?></small></p>
 	</td>

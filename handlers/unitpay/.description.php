@@ -37,17 +37,17 @@ $data = array(
 			'INPUT' => array(
 				'TYPE' => 'ENUM',
 				'OPTIONS' => array(
-					"default"	=> 	"По-умолчанию (из настроек модуля)",
-					"any"		=>	"Любые",
-					"mc"		=>	"Мобильный платеж",
-					"sms"		=>	"SMS-оплата",
-					"card"		=>	"Пластиковые карты",
-					"webmoney"	=>	"WebMoney",
-					"yandex"	=>	"Яндекс.Деньги",
-					"qiwi"		=>	"Qiwi",
-					"paypal"	=>	"PayPal",
-					"alfaClick"	=>	"Альфа-Клик",
-					"cash"		=>	"Наличные",
+					"default"	=> 	Loc::getMessage($mod_lang.'PAYTYPE_default'),
+					"any"		=>	Loc::getMessage($mod_lang.'PAYTYPE_any'),
+					"mc"		=>	Loc::getMessage($mod_lang.'PAYTYPE_mc'),
+					"sms"		=>	Loc::getMessage($mod_lang.'PAYTYPE_sms'),
+					"card"		=>	Loc::getMessage($mod_lang.'PAYTYPE_card'),
+					"webmoney"	=>	Loc::getMessage($mod_lang.'PAYTYPE_webmoney'),
+					"yandex"	=>	Loc::getMessage($mod_lang.'PAYTYPE_yandex'),
+					"qiwi"		=>	Loc::getMessage($mod_lang.'PAYTYPE_qiwi'),
+					"paypal"	=>	Loc::getMessage($mod_lang.'PAYTYPE_paypal'),
+					"alfaClick"	=>	Loc::getMessage($mod_lang.'PAYTYPE_alfaClick'),
+					"cash"		=>	Loc::getMessage($mod_lang.'PAYTYPE_cash'),
 				),
 			)
 

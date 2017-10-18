@@ -21,6 +21,25 @@ $MESS['UNITPAY_D_typepay'] = '';
 $MESS['UNITPAY_D_purseType'] = 'Например, WMR. Используеться есть в настройках модуля UnitPay выбран "Способ платежа" -  WebMoney';
 $MESS['UNITPAY_D_cashboxItems'] = 'Данная опция актуальна, если на стороне UnitPay подключена касса';
 
+$MESS['UNITPAY_PAYTYPE_any'] = 'Любые';
+$MESS['UNITPAY_PAYTYPE_mc'] = 'Мобильный платеж';
+$MESS['UNITPAY_PAYTYPE_sms'] = 'SMS-оплата';
+$MESS['UNITPAY_PAYTYPE_card'] = 'Пластиковые карты';
+$MESS['UNITPAY_PAYTYPE_webmoney'] = 'WebMoney';
+$MESS['UNITPAY_PAYTYPE_yandex'] = 'Яндекс.Деньги';
+$MESS['UNITPAY_PAYTYPE_qiwi'] = 'Qiwi';
+$MESS['UNITPAY_PAYTYPE_paypal'] = 'PayPal';
+$MESS['UNITPAY_PAYTYPE_alfaClick'] = 'Альфа-Клик';
+$MESS['UNITPAY_PAYTYPE_cash'] = 'Наличные';
+
+$MESS['UNITPAY_CURRENCY_RUB'] = 'RUB (Рубль)';
+$MESS['UNITPAY_CURRENCY_UAH'] = 'UAH (Гривна)';
+$MESS['UNITPAY_CURRENCY_BYR'] = 'BYR (Белорусский рубль)';
+$MESS['UNITPAY_CURRENCY_EUR'] = 'EUR (Евро)';
+$MESS['UNITPAY_CURRENCY_USD'] = 'USD (Доллар США)';
+
+$MESS['UNITPAY_LANG_RU'] = 'Русский';
+$MESS['UNITPAY_LANG_EN'] = 'Английский';
 
 $MESS['UNITPAY_PROP'] = 'Настройки UnitPay';
 $MESS['SALE_NAME'] = 'Имя сайта';
