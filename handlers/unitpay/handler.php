@@ -43,7 +43,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
         return true;//$id == $paySystemId;
     }
 
-    protected function isTestMode()
+    protected function isTestMode(Payment $payment = null)
     {
         return 'N';
     }
