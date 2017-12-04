@@ -109,26 +109,29 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                         $orderItems[] = $orderItem;
                     }
 
-                    $vatInfo = $this->getDeliveryVatInfo($item);
+                    if ($item->getPrice() > 0) {
+                            $vatInfo = $this->getDeliveryVatInfo($item);
 
-                    $deliveryItem = array(
-                        'name' => $item->getField('DELIVERY_NAME'),
-                        'price' => number_format($item->getPrice(), 2, '.', ''),
-                        'sum' => number_format($item->getPrice(), 2, '.', ''),
-                        'count' => '1.000'
-                    );
-                    if ($vatInfo) {
-                        $deliveryItem['with_nds'] = $vatInfo['RATE'] == 18;
+                            $deliveryItem = array(
+                                'name' => $item->getField('DELIVERY_NAME'),
+                                'price' => number_format($item->getPrice(), 2, '.', ''),
+                                'sum' => number_format($item->getPrice(), 2, '.', ''),
+                                'count' => '1.000'
+                            );
+                            if ($vatInfo) {
+                                $deliveryItem['with_nds'] = $vatInfo['RATE'] == 18;
+                            }
+
+                            $deliveryDiscountPrice = 0;
+                            if (!$item->isCustomPrice() && $item->getField('DISCOUNT_PRICE') > 0)
+                            {
+                                $deliveryDiscountPrice = $item->getField('DISCOUNT_PRICE');
+                            }
+                            $deliveryDiscountPrice = number_format($deliveryDiscountPrice, 2, '.', '');
+
+                            $orderItems[] = $deliveryItem;
                     }
 
-                    $deliveryDiscountPrice = 0;
-                    if (!$item->isCustomPrice() && $item->getField('DISCOUNT_PRICE') > 0)
-                    {
-                        $deliveryDiscountPrice = $item->getField('DISCOUNT_PRICE');
-                    }
-                    $deliveryDiscountPrice = number_format($deliveryDiscountPrice, 2, '.', '');
-
-                    $orderItems[] = $deliveryItem;
                 }
             }
         }
