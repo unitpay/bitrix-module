@@ -145,7 +145,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                 $paymentType = '';
         }
         if(UNITPAY_PAYMENT_INIT_API && $paymentType != ""){
-            $url = $this->getUrl($payment, 'pay');
+            $url = "https://" . Option::get('unitpay.paymodule', 'domain_'.SITE_ID) . "/api";
 
             $desc = Option::get('unitpay.paymodule', 'desc_'.SITE_ID);
             if (strtoupper(SITE_CHARSET) != 'UTF-8') {
@@ -193,7 +193,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
             return $this->showTemplate($payment, 'template');
         }
         else{
-            $url = $this->getUrl($payment, 'pay_all');
+            $url = "https://" . Option::get('unitpay.paymodule', 'domain_'.SITE_ID) . "/pay/";
             $url.= Option::get('unitpay.paymodule', 'pkey_'.SITE_ID);
             if ($paymentType) {
                     $url .= '/'.$paymentType;

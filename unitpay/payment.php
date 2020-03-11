@@ -10,12 +10,13 @@ include(GetLangFileName(dirname(__FILE__)."/", "/payment.php"));
 	if(strlen($currency)==0)
 		$currency = "RUB";
 	$locale =  COption::GetOptionString('unitpay.paymodule', 'lang_'.SITE_ID, '');
+	$domain =  COption::GetOptionString('unitpay.paymodule', 'domain_'.SITE_ID, '');
 	$SecretKey = COption::GetOptionString('unitpay.paymodule', 'skey_'.SITE_ID, '');
 	$typepay = COption::GetOptionString('unitpay.paymodule', 'typepay_'.SITE_ID, "");
 
 ?>
 
-<form action="https://unitpay.ru/pay/<?=$url?>" method="post" target="_blank" accept-charset="utf-8">
+<form action="https://<?=$domain?>/pay/<?=$url?>" method="post" target="_blank" accept-charset="utf-8">
 	<input type="hidden" name="account" value="<?=$id?>">
     <input type="hidden" name="sum" value="<?=$sum?>">
     <input type="hidden" name="currency" value="<?=$currency?>">
