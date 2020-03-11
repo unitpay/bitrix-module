@@ -1,6 +1,7 @@
 <?
 global $MESS;
 
+$MESS['UNITPAY_domain'] = 'Домен';
 $MESS['UNITPAY_numb'] = '№ проекта';
 $MESS['UNITPAY_pkey'] = 'Публичный ключ проекта';
 $MESS['UNITPAY_skey'] = 'Секретный ключ проекта';
@@ -11,6 +12,7 @@ $MESS['UNITPAY_typepay'] = 'Способы оплаты';
 $MESS['UNITPAY_purseType'] = 'Типа кошелька на который будет идти оплата в системе Wemboney';
 $MESS['UNITPAY_cashboxItems'] = 'Передавать содержание заказа для чека';
 
+$MESS['UNITPAY_D_domain'] = 'Ваш рабочий домен UnitPay';
 $MESS['UNITPAY_D_numb'] = 'Указан в заголовке названия проекта личного кабинета unitpay';
 $MESS['UNITPAY_D_pkey'] = 'Указан на странице проекта личного кабинета unitpay в разделе "Форма оплаты"';
 $MESS['UNITPAY_D_skey'] = 'Указан в настройках проекта (параметр "SECRET KEY") личного кабинета unitpay';

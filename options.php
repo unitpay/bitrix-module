@@ -26,6 +26,7 @@ IncludeModuleLangFile(__FILE__);
 	$siteCount = count($siteList);
 
 $arAllOptions = Array(
+    Array("domain_", GetMessage('UNITPAY_domain'), array("text"), "",GetMessage('UNITPAY_D_domain')),
 	Array("numb_", GetMessage('UNITPAY_numb'), array("text"), "",GetMessage('UNITPAY_D_numb')),
 	Array("pkey_", GetMessage('UNITPAY_pkey'), array("text"), "",GetMessage('UNITPAY_D_pkey')),
 	Array("skey_", GetMessage('UNITPAY_skey'), array("text"), "",GetMessage('UNITPAY_D_skey')),
@@ -57,6 +58,8 @@ if($REQUEST_METHOD=="POST" && strlen($Update.$Apply.$RestoreDefaults)>0 && check
 	else{
 		foreach($siteList as $site)
 		{
+            COption::SetOptionString('unitpay.paymodule', 'domain_'.$site['ID'],
+                                                $_POST['domain_'.$site['ID']]);
 			COption::SetOptionString('unitpay.paymodule', 'numb_'.$site['ID'],
 												$_POST['numb_'.$site['ID']]);
 			COption::SetOptionString('unitpay.paymodule', 'pkey_'.$site['ID'],
