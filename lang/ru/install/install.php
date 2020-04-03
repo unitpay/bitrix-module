@@ -2,13 +2,13 @@
 global $MESS;
 
 $MESS['DEVELOPER'] = 'UnitPay';
-$MESS['DEVELOPER_SITE'] = 'https://unitpay.ru/';
+$MESS['DEVELOPER_SITE'] = 'UnitPay';
 
-$MESS['UNITPAY_MODULE_NAME'] = 'Ïëàòåæíàÿ ñèñòåìà UnitPay';
-$MESS['UNITPAY_MODULE_DESCRIPTION'] = 'óíèâåðñàëüíîå ïëàòåæíîå ðåøåíèå';
+$MESS['UNITPAY_MODULE_NAME'] = 'ÐŸÐ»Ð°Ñ‚ÐµÐ¶Ð½Ð°Ñ ÑÐ¸ÑÑ‚ÐµÐ¼Ð° UnitPay';
+$MESS['UNITPAY_MODULE_DESCRIPTION'] = 'ÑƒÐ½Ð¸Ð²ÐµÑ€ÑÐ°Ð»ÑŒÐ½Ð¾Ðµ Ð¿Ð»Ð°Ñ‚ÐµÐ¶Ð½Ð¾Ðµ Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ';
 
-$MESS['UNITPAY_D'] = 'äîñòóï çàêðûò';
-$MESS['UNITPAY_R'] = 'äîñòóï îòêðûò';
-$MESS['UNITPAY_W'] = 'ïîëíûé äîñòóï';
+$MESS['UNITPAY_D'] = 'Ð´Ð¾ÑÑ‚ÑƒÐ¿ Ð·Ð°ÐºÑ€Ñ‹Ñ‚';
+$MESS['UNITPAY_R'] = 'Ð´Ð¾ÑÑ‚ÑƒÐ¿ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚';
+$MESS['UNITPAY_W'] = 'Ð¿Ð¾Ð»Ð½Ñ‹Ð¹ Ð´Ð¾ÑÑ‚ÑƒÐ¿';
 
 ?>

@@ -25,10 +25,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 
     protected function getUrlList()
     {
-        return array(
-            'pay' => array(self::ACTIVE_URL => 'https://unitpay.ru/api'),
-            'pay_all' => array(self::ACTIVE_URL => 'https://unitpay.ru/pay/'),
-        );
+        return [];
     }
 
     public function getPaymentIdFromRequest(Request $request)
