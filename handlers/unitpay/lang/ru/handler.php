@@ -2,4 +2,4 @@
 
 global $MESS;
 
-$MESS['UNITPAY_Error'] = 'Заказ не найден';
+$MESS['UNITPAY_Error'] = 'Р—Р°РєР°Р· РЅРµ РЅР°Р№РґРµРЅ';

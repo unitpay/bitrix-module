@@ -1,51 +1,51 @@
 <?
 global $MESS;
 
-$MESS['UNITPAY_domain'] = 'Äîìåí';
-$MESS['UNITPAY_numb'] = '¹ ïðîåêòà';
-$MESS['UNITPAY_pkey'] = 'Ïóáëè÷íûé êëþ÷ ïðîåêòà';
-$MESS['UNITPAY_skey'] = 'Ñåêðåòíûé êëþ÷ ïðîåêòà';
-$MESS['UNITPAY_desc'] = 'Îïèñàíèå çàêàçà';
-$MESS['UNITPAY_curr'] = 'Âàëþòà';
-$MESS['UNITPAY_lang'] = 'ßçûê ôîðìû îïëàòû';
-$MESS['UNITPAY_typepay'] = 'Ñïîñîáû îïëàòû';
-$MESS['UNITPAY_purseType'] = 'Òèïà êîøåëüêà íà êîòîðûé áóäåò èäòè îïëàòà â ñèñòåìå Wemboney';
-$MESS['UNITPAY_cashboxItems'] = 'Ïåðåäàâàòü ñîäåðæàíèå çàêàçà äëÿ ÷åêà';
+$MESS['UNITPAY_domain'] = 'Ð”Ð¾Ð¼ÐµÐ½';
+$MESS['UNITPAY_numb'] = 'â„– Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°';
+$MESS['UNITPAY_pkey'] = 'ÐŸÑƒÐ±Ð»Ð¸Ñ‡Ð½Ñ‹Ð¹ ÐºÐ»ÑŽÑ‡ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°';
+$MESS['UNITPAY_skey'] = 'Ð¡ÐµÐºÑ€ÐµÑ‚Ð½Ñ‹Ð¹ ÐºÐ»ÑŽÑ‡ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°';
+$MESS['UNITPAY_desc'] = 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð·Ð°ÐºÐ°Ð·Ð°';
+$MESS['UNITPAY_curr'] = 'Ð’Ð°Ð»ÑŽÑ‚Ð°';
+$MESS['UNITPAY_lang'] = 'Ð¯Ð·Ñ‹Ðº Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð¾Ð¿Ð»Ð°Ñ‚Ñ‹';
+$MESS['UNITPAY_typepay'] = 'Ð¡Ð¿Ð¾ÑÐ¾Ð±Ñ‹ Ð¾Ð¿Ð»Ð°Ñ‚Ñ‹';
+$MESS['UNITPAY_purseType'] = 'Ð¢Ð¸Ð¿Ð° ÐºÐ¾ÑˆÐµÐ»ÑŒÐºÐ° Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð±ÑƒÐ´ÐµÑ‚ Ð¸Ð´Ñ‚Ð¸ Ð¾Ð¿Ð»Ð°Ñ‚Ð° Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ðµ Wemboney';
+$MESS['UNITPAY_cashboxItems'] = 'ÐŸÐµÑ€ÐµÐ´Ð°Ð²Ð°Ñ‚ÑŒ ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ð½Ð¸Ðµ Ð·Ð°ÐºÐ°Ð·Ð° Ð´Ð»Ñ Ñ‡ÐµÐºÐ°';
 
-$MESS['UNITPAY_D_domain'] = 'Âàø ðàáî÷èé äîìåí UnitPay';
-$MESS['UNITPAY_D_numb'] = 'Óêàçàí â çàãîëîâêå íàçâàíèÿ ïðîåêòà ëè÷íîãî êàáèíåòà unitpay';
-$MESS['UNITPAY_D_pkey'] = 'Óêàçàí íà ñòðàíèöå ïðîåêòà ëè÷íîãî êàáèíåòà unitpay â ðàçäåëå "Ôîðìà îïëàòû"';
-$MESS['UNITPAY_D_skey'] = 'Óêàçàí â íàñòðîéêàõ ïðîåêòà (ïàðàìåòð "SECRET KEY") ëè÷íîãî êàáèíåòà unitpay';
-$MESS['UNITPAY_D_desc'] = 'Íàïðèìåð "Îïëàòà çàêàçà èç ìàãàçèíà Öâåòîâ"';
-$MESS['UNITPAY_D_curr'] = 'Âàëþòà, â êîòîðîé âûñòàâëÿåòñÿ ñóììà ê îïëàòå';
+$MESS['UNITPAY_D_domain'] = 'Ð’Ð°Ñˆ Ñ€Ð°Ð±Ð¾Ñ‡Ð¸Ð¹ Ð´Ð¾Ð¼ÐµÐ½ UnitPay';
+$MESS['UNITPAY_D_numb'] = 'Ð£ÐºÐ°Ð·Ð°Ð½ Ð² Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÐµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ñ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° Ð»Ð¸Ñ‡Ð½Ð¾Ð³Ð¾ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° unitpay';
+$MESS['UNITPAY_D_pkey'] = 'Ð£ÐºÐ°Ð·Ð°Ð½ Ð½Ð° ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ðµ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° Ð»Ð¸Ñ‡Ð½Ð¾Ð³Ð¾ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° unitpay Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ "Ð¤Ð¾Ñ€Ð¼Ð° Ð¾Ð¿Ð»Ð°Ñ‚Ñ‹"';
+$MESS['UNITPAY_D_skey'] = 'Ð£ÐºÐ°Ð·Ð°Ð½ Ð² Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ°Ñ… Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° (Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ "SECRET KEY") Ð»Ð¸Ñ‡Ð½Ð¾Ð³Ð¾ ÐºÐ°Ð±Ð¸Ð½ÐµÑ‚Ð° unitpay';
+$MESS['UNITPAY_D_desc'] = 'ÐÐ°Ð¿Ñ€Ð¸Ð¼ÐµÑ€ "ÐžÐ¿Ð»Ð°Ñ‚Ð° Ð·Ð°ÐºÐ°Ð·Ð° Ð¸Ð· Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð° Ð¦Ð²ÐµÑ‚Ð¾Ð²"';
+$MESS['UNITPAY_D_curr'] = 'Ð’Ð°Ð»ÑŽÑ‚Ð°, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð²Ñ‹ÑÑ‚Ð°Ð²Ð»ÑÐµÑ‚ÑÑ ÑÑƒÐ¼Ð¼Ð° Ðº Ð¾Ð¿Ð»Ð°Ñ‚Ðµ';
 $MESS['UNITPAY_D_lang'] = '';
 $MESS['UNITPAY_D_typepay'] = '';
-$MESS['UNITPAY_D_purseType'] = 'Íàïðèìåð, WMR. Èñïîëüçóåòüñÿ åñòü â íàñòðîéêàõ ìîäóëÿ UnitPay âûáðàí "Ñïîñîá ïëàòåæà" -  WebMoney';
-$MESS['UNITPAY_D_cashboxItems'] = 'Äàííàÿ îïöèÿ àêòóàëüíà, åñëè íà ñòîðîíå UnitPay ïîäêëþ÷åíà êàññà';
+$MESS['UNITPAY_D_purseType'] = 'ÐÐ°Ð¿Ñ€Ð¸Ð¼ÐµÑ€, WMR. Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑŒÑÑ ÐµÑÑ‚ÑŒ Ð² Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ°Ñ… Ð¼Ð¾Ð´ÑƒÐ»Ñ UnitPay Ð²Ñ‹Ð±Ñ€Ð°Ð½ "Ð¡Ð¿Ð¾ÑÐ¾Ð± Ð¿Ð»Ð°Ñ‚ÐµÐ¶Ð°" -  WebMoney';
+$MESS['UNITPAY_D_cashboxItems'] = 'Ð”Ð°Ð½Ð½Ð°Ñ Ð¾Ð¿Ñ†Ð¸Ñ Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°, ÐµÑÐ»Ð¸ Ð½Ð° ÑÑ‚Ð¾Ñ€Ð¾Ð½Ðµ UnitPay Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð° ÐºÐ°ÑÑÐ°';
 
-$MESS['UNITPAY_PAYTYPE_any'] = 'Ëþáûå';
-$MESS['UNITPAY_PAYTYPE_mc'] = 'Ìîáèëüíûé ïëàòåæ';
-$MESS['UNITPAY_PAYTYPE_sms'] = 'SMS-îïëàòà';
-$MESS['UNITPAY_PAYTYPE_card'] = 'Ïëàñòèêîâûå êàðòû';
+$MESS['UNITPAY_PAYTYPE_any'] = 'Ð›ÑŽÐ±Ñ‹Ðµ';
+$MESS['UNITPAY_PAYTYPE_mc'] = 'ÐœÐ¾Ð±Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ð¿Ð»Ð°Ñ‚ÐµÐ¶';
+$MESS['UNITPAY_PAYTYPE_sms'] = 'SMS-Ð¾Ð¿Ð»Ð°Ñ‚Ð°';
+$MESS['UNITPAY_PAYTYPE_card'] = 'ÐŸÐ»Ð°ÑÑ‚Ð¸ÐºÐ¾Ð²Ñ‹Ðµ ÐºÐ°Ñ€Ñ‚Ñ‹';
 $MESS['UNITPAY_PAYTYPE_webmoney'] = 'WebMoney';
-$MESS['UNITPAY_PAYTYPE_yandex'] = 'ßíäåêñ.Äåíüãè';
+$MESS['UNITPAY_PAYTYPE_yandex'] = 'Ð¯Ð½Ð´ÐµÐºÑ.Ð”ÐµÐ½ÑŒÐ³Ð¸';
 $MESS['UNITPAY_PAYTYPE_qiwi'] = 'Qiwi';
 $MESS['UNITPAY_PAYTYPE_paypal'] = 'PayPal';
-$MESS['UNITPAY_PAYTYPE_alfaClick'] = 'Àëüôà-Êëèê';
-$MESS['UNITPAY_PAYTYPE_cash'] = 'Íàëè÷íûå';
+$MESS['UNITPAY_PAYTYPE_alfaClick'] = 'ÐÐ»ÑŒÑ„Ð°-ÐšÐ»Ð¸Ðº';
+$MESS['UNITPAY_PAYTYPE_cash'] = 'ÐÐ°Ð»Ð¸Ñ‡Ð½Ñ‹Ðµ';
 
-$MESS['UNITPAY_CURRENCY_RUB'] = 'RUB (Ðóáëü)';
-$MESS['UNITPAY_CURRENCY_UAH'] = 'UAH (Ãðèâíà)';
-$MESS['UNITPAY_CURRENCY_BYR'] = 'BYR (Áåëîðóññêèé ðóáëü)';
-$MESS['UNITPAY_CURRENCY_EUR'] = 'EUR (Åâðî)';
-$MESS['UNITPAY_CURRENCY_USD'] = 'USD (Äîëëàð ÑØÀ)';
+$MESS['UNITPAY_CURRENCY_RUB'] = 'RUB (Ð ÑƒÐ±Ð»ÑŒ)';
+$MESS['UNITPAY_CURRENCY_UAH'] = 'UAH (Ð“Ñ€Ð¸Ð²Ð½Ð°)';
+$MESS['UNITPAY_CURRENCY_BYR'] = 'BYR (Ð‘ÐµÐ»Ð¾Ñ€ÑƒÑÑÐºÐ¸Ð¹ Ñ€ÑƒÐ±Ð»ÑŒ)';
+$MESS['UNITPAY_CURRENCY_EUR'] = 'EUR (Ð•Ð²Ñ€Ð¾)';
+$MESS['UNITPAY_CURRENCY_USD'] = 'USD (Ð”Ð¾Ð»Ð»Ð°Ñ€ Ð¡Ð¨Ð)';
 
-$MESS['UNITPAY_LANG_RU'] = 'Ðóññêèé';
-$MESS['UNITPAY_LANG_EN'] = 'Àíãëèéñêèé';
+$MESS['UNITPAY_LANG_RU'] = 'Ð ÑƒÑÑÐºÐ¸Ð¹';
+$MESS['UNITPAY_LANG_EN'] = 'ÐÐ½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ð¹';
 
-$MESS['UNITPAY_PROP'] = 'Íàñòðîéêè UnitPay';
-$MESS['SALE_NAME'] = 'Èìÿ ñàéòà';
-$MESS['SALE_PARAM'] = 'Íàñòðîéêè äëÿ ñàéòà';
+$MESS['UNITPAY_PROP'] = 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ UnitPay';
+$MESS['SALE_NAME'] = 'Ð˜Ð¼Ñ ÑÐ°Ð¹Ñ‚Ð°';
+$MESS['SALE_PARAM'] = 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð´Ð»Ñ ÑÐ°Ð¹Ñ‚Ð°';
 
 
 ?>

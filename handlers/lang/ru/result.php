@@ -2,6 +2,6 @@
 
 global $MESS;
 
-$MESS['UNITPAY_CHECK_SUCCESS'] = 'Заказ можно оплатить';
-$MESS['UNITPAY_PAY_SUCCESS'] = 'Заказ успешно оплачен';
-$MESS['UNITPAY_UNKNOWN_METHOD'] = 'Неизвестный метод';
+$MESS['UNITPAY_CHECK_SUCCESS'] = 'Р—Р°РєР°Р· РјРѕР¶РЅРѕ РѕРїР»Р°С‚РёС‚СЊ';
+$MESS['UNITPAY_PAY_SUCCESS'] = 'Р—Р°РєР°Р· СѓСЃРїРµС€РЅРѕ РѕРїР»Р°С‡РµРЅ';
+$MESS['UNITPAY_UNKNOWN_METHOD'] = 'РќРµРёР·РІРµСЃС‚РЅС‹Р№ РјРµС‚РѕРґ';
