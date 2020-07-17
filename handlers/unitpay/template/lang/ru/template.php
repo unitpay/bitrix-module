@@ -1,4 +1,4 @@
 <?php
-$MESS["UNITPAY_BTN_PAY"] = "Îïëàòèòü";
-$MESS["UNITPAY_BTN_PAY_INVOICE"] = "Ïîäðîáíîñòè îá îïëàòå";
-$MESS["UNITPAY_ERROR"] = "Îøèáêà";
+$MESS["UNITPAY_BTN_PAY"] = "ÐžÐ¿Ð»Ð°Ñ‚Ð¸Ñ‚ÑŒ";
+$MESS["UNITPAY_BTN_PAY_INVOICE"] = "ÐŸÐ¾Ð´Ñ€Ð¾Ð±Ð½Ð¾ÑÑ‚Ð¸ Ð¾Ð± Ð¾Ð¿Ð»Ð°Ñ‚Ðµ";
+$MESS["UNITPAY_ERROR"] = "ÐžÑˆÐ¸Ð±ÐºÐ°";

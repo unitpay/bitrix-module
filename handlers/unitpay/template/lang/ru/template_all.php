@@ -1,2 +1,2 @@
 <?php
-$MESS["UNITPAY_BTN_PAY"] = "Îïëàòèòü";
+$MESS["UNITPAY_BTN_PAY"] = "ÐžÐ¿Ð»Ð°Ñ‚Ð¸Ñ‚ÑŒ";
