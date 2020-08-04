@@ -116,7 +116,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                                 'count' => '1.000'
                             );
                             if ($vatInfo) {
-                                $deliveryItem['with_nds'] = $vatInfo['RATE'] == 18;
+                                $deliveryItem['with_nds'] = $vatInfo['RATE'] == 20;
                             }
 
                             $deliveryDiscountPrice = 0;
