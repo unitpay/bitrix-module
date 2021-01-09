@@ -31,6 +31,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
     public function getPaymentIdFromRequest(Request $request)
     {
         $param = $request->get('params');
+
         return $param['account'];
     }
 
@@ -47,7 +48,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 
     public function getCurrencyList()
     {
-        return array('RUB');
+        return array('RUB', 'USD');
     }
 
     public function initiatePay(Payment $payment, Request $request = null)
@@ -74,22 +75,23 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                 if (count($item->getShipmentItemCollection())) {
                     foreach($item->getShipmentItemCollection() as $shipmentItem) {
                         $basketItem = $shipmentItem->getBasketItem();
+
                         if ($basketItem->isBundleChild())
                             continue;
+
+                        $vatInfo = $this->getProductVatInfo($basketItem);
 
                         $orderItem = array(
                             'name'	=>	$basketItem->getField('NAME'),
                             'price'	=>	number_format($basketItem->getPrice(), 2, '.', ''),
                             'sum'	=>	number_format($basketItem->getFinalPrice(), 2, '.', ''),
-                            'count'     =>      number_format($basketItem->getQuantity(), 3, '.', ''),
+                            'count' =>  number_format($basketItem->getQuantity(), 3, '.', ''),
+							//'currency' => $item->getCurrency() ? $item->getCurrency() : $order->getCurrency(),
+                            'currency' => Option::get('unitpay.paymodule', 'curr_'.SITE_ID),
+                            'type'  => 'commodity',
+                            'nds'   => $vatInfo ? $this->getTaxRates($vatInfo["RATE"]) : "none",
 
                         );
-
-                        $vatInfo = $this->getProductVatInfo($basketItem);
-
-                        if ($vatInfo) {
-                            $orderItem['with_nds'] = $vatInfo['RATE'] == 18;
-                        }
 
                         $discountPrice = 0;
                         if ($basketItem->isCustomPrice())
@@ -110,14 +112,15 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                             $vatInfo = $this->getDeliveryVatInfo($item);
 
                             $deliveryItem = array(
-                                'name' => $item->getField('DELIVERY_NAME'),
+                                'name'  => $item->getField('DELIVERY_NAME'),
                                 'price' => number_format($item->getPrice(), 2, '.', ''),
-                                'sum' => number_format($item->getPrice(), 2, '.', ''),
-                                'count' => '1.000'
+                                'sum'   => number_format($item->getPrice(), 2, '.', ''),
+                                //'currency' => $item->getCurrency() ? $item->getCurrency() : $order->getCurrency(),
+                                'currency' => Option::get('unitpay.paymodule', 'curr_'.SITE_ID),
+                                'count' => '1.000',
+                                'type'  => 'service',
+                                'nds'   => $vatInfo ? $this->getTaxRates($vatInfo["RATE"]) : "none",
                             );
-                            if ($vatInfo) {
-                                $deliveryItem['with_nds'] = $vatInfo['RATE'] == 20;
-                            }
 
                             $deliveryDiscountPrice = 0;
                             if (!$item->isCustomPrice() && $item->getField('DISCOUNT_PRICE') > 0)
@@ -128,6 +131,9 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 
                             $orderItems[] = $deliveryItem;
                     }
+
+                    $tempArr = array_unique(array_column($orderItems, 'name'));
+                    $orderItems = array_intersect_key($orderItems, $tempArr);
 
                 }
             }
@@ -159,6 +165,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
                     'ip' => $_SERVER['REMOTE_ADDR'],
                     'secretKey' => Option::get('unitpay.paymodule', 'skey_'.SITE_ID),
                     'currency' => Option::get('unitpay.paymodule', 'curr_'.SITE_ID),
+                    //'currency' => $order->getCurrency(),
                     'locale' => Option::get('unitpay.paymodule', 'lang_'.SITE_ID),
                 )
             );
@@ -242,6 +249,28 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
         return false;
     }
 
+    /**
+     * @param $rate
+     * @return string
+     */
+    public function getTaxRates($rate){
+        switch (intval($rate)){
+            case 10:
+                $vat = 'vat10';
+                break;
+            case 20:
+                $vat = 'vat20';
+                break;
+            case 0:
+                $vat = 'vat0';
+                break;
+            default:
+                $vat = 'none';
+        }
+
+        return $vat;
+    }
+
     public function processRequest(Payment $payment, Request $request)
     {
         $result = new PaySystem\ServiceResult();
@@ -297,6 +326,20 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
             );
             $result->setPsData($fields);
             $result->setOperationType(PaySystem\ServiceResult::MONEY_COMING);
+
+            $order = $payment->getCollection()->getOrder();
+
+            $shipments = $order->getShipmentCollection();
+
+            foreach ($shipments as $shipment)
+            {
+                if(!$shipment->isSystem())
+                {
+                    $shipment->setField('DEDUCTED', "Y");
+                }
+            }
+
+            \CSaleOrder::Update($params['account'], array("STATUS_ID" => "P", "PAYED" => "Y", "DATE_PAYED" => Date(\CDatabase::DateFormatToPHP(\CLang::GetDateFormat("FULL", LANG)))));
         }
         else{
         //     $errorMessage = 'Incorrect payment \'sum\', \'currency\', \'projectId\', \'order id\'';
@@ -320,8 +363,9 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
         $projectId  = Option::get('unitpay.paymodule', 'numb_'.SITE_ID);
         $id = $this->getBusinessValue($payment, 'OrderID');
         $paymentSum = $this->getBusinessValue($payment, 'OrderSum');
+
         if (
-            number_format($params['sum'], 2, '.', '') == number_format($paymentSum, 2, '.', '')
+            number_format($params['orderSum'], 2, '.', '') == number_format($paymentSum, 2, '.', '')
             && $params['orderCurrency'] == $currency
             && $params['account'] == $id
             && $params['projectId'] == $projectId
