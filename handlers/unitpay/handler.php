@@ -228,9 +228,9 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
             );
 
             if ($paymentType) {
-                    $params['hideMenu'] = true;
-                    $params['hideOtherMethods'] = true;
-                //     $params['hideOtherPSMethods'] = 'true';
+                $params['hideMenu'] = false;
+                $params['hideOtherMethods'] = false;
+                //$params['hideOtherPSMethods'] = 'true';
             }
 
             if ($userEmail) {
