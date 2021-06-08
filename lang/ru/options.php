@@ -11,6 +11,7 @@ $MESS['UNITPAY_lang'] = 'Язык формы оплаты';
 $MESS['UNITPAY_typepay'] = 'Способы оплаты';
 $MESS['UNITPAY_purseType'] = 'Типа кошелька на который будет идти оплата в системе Wemboney';
 $MESS['UNITPAY_cashboxItems'] = 'Передавать содержание заказа для чека';
+$MESS['UNITPAY_redirect'] = 'Редирект на оплату';
 
 $MESS['UNITPAY_D_domain'] = 'Ваш рабочий домен UnitPay';
 $MESS['UNITPAY_D_numb'] = 'Указан в заголовке названия проекта личного кабинета unitpay';
@@ -22,6 +23,7 @@ $MESS['UNITPAY_D_lang'] = '';
 $MESS['UNITPAY_D_typepay'] = '';
 $MESS['UNITPAY_D_purseType'] = 'Например, WMR. Используеться есть в настройках модуля UnitPay выбран "Способ платежа" -  WebMoney';
 $MESS['UNITPAY_D_cashboxItems'] = 'Данная опция актуальна, если на стороне UnitPay подключена касса';
+$MESS['UNITPAY_D_redirect'] = 'После нажатия на оформить заказ, клиент сразу будет перенаправлен на unitpay';
 
 $MESS['UNITPAY_PAYTYPE_any'] = 'Любые';
 $MESS['UNITPAY_PAYTYPE_mc'] = 'Мобильный платеж';
