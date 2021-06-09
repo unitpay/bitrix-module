@@ -33,6 +33,7 @@ $arAllOptions = Array(
 	Array("desc_", GetMessage('UNITPAY_desc'), array("text"), "",GetMessage('UNITPAY_D_desc')),
 	Array("purseType_", GetMessage('UNITPAY_purseType'), array("text"), "",GetMessage('UNITPAY_D_purseType')),
 	Array("cashboxItems_", GetMessage('UNITPAY_cashboxItems'), array("checkbox"), "",GetMessage('UNITPAY_D_cashboxItems')),
+	Array("redirect_", GetMessage('UNITPAY_redirect'), array("checkbox"), "",GetMessage('UNITPAY_D_redirect')),
 
 	//Array("curr_", GetMessage('UNITPAY_curr'), array("text"), ""),
 	//Array("lang_", GetMessage('UNITPAY_lang'), array("text"), ""),
@@ -81,6 +82,9 @@ if($REQUEST_METHOD=="POST" && strlen($Update.$Apply.$RestoreDefaults)>0 && check
 
 			COption::SetOptionString('unitpay.paymodule', 'typepay_'.$site['ID'],
 												$_POST['typepay_'.$site['ID']]);
+												
+			COption::SetOptionString('unitpay.paymodule', 'redirect_'.$site['ID'],
+				$_POST['redirect_'.$site['ID']]);
 		}
 	}
 }
@@ -124,7 +128,7 @@ foreach($arAllOptions as $arOption):
 ?>: </td>
 	<td valign="top" width="70%"><?
 	if($type[0]=="checkbox"):
-		?><input type="checkbox" name="<?echo htmlspecialcharsbx($arOption[0]).$site['ID']?>" id="<?echo htmlspecialcharsbx($arOption[0])?>" value="Y"<?if($val=="Y")echo" checked";?> /><p><small><?=$arOption[4]?></small></p><?
+		?><input type="checkbox" name="<?echo htmlspecialcharsbx($arOption[0]).$site['ID']?>" id="<?echo htmlspecialcharsbx($arOption[0]).$site['ID']?>" value="Y"<?if($val=="Y")echo" checked";?> /><p><small><?=$arOption[4]?></small></p><?
 	elseif ($type[0]=="text"):
 		?><input type="text" size="<?echo $type[1]?>" maxlength="2550" value="<?echo htmlspecialcharsbx($val)?>" name="<?echo htmlspecialcharsbx($arOption[0]).$site['ID']?>" style="width:90%;" />
 		<p><small><?=$arOption[4]?></small></p>

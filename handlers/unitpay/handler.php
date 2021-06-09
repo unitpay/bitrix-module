@@ -110,7 +110,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
 
                     if ($item->getPrice() > 0) {
                             $vatInfo = $this->getDeliveryVatInfo($item);
-
+							
                             $deliveryItem = array(
                                 'name'  => $item->getField('DELIVERY_NAME'),
                                 'price' => number_format($item->getPrice(), 2, '.', ''),
@@ -230,7 +230,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
             if ($paymentType) {
                 $params['hideMenu'] = false;
                 $params['hideOtherMethods'] = false;
-                //$params['hideOtherPSMethods'] = 'true';
+                //     $params['hideOtherPSMethods'] = 'true';
             }
 
             if ($userEmail) {
@@ -244,6 +244,12 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
             }
 
             $this->setExtraParams($params);
+			
+			if(Option::get('unitpay.paymodule', 'redirect_'.SITE_ID)) {
+				unset($params["url"]);
+				LocalRedirect($url . "?" . http_build_query($params), true);
+			}
+			
             return $this->showTemplate($payment, 'template_all');
         }
         return false;
@@ -386,6 +392,7 @@ class unitpay_paymoduleHandler extends PaySystem\ServiceHandler
         $deliveryVatInfo = array();
 
         $calcDeliveryTax = Main\Config\Option::get("sale", "COUNT_DELIVERY_TAX", "N");
+		
         if ($calcDeliveryTax === 'Y')
         {
             /** @var ShipmentCollection $collection */
